@@ -4,9 +4,10 @@ import Layout from '@/layouts/index.vue'
 const routes = [
 	{
 		path: '/',
-		name: 'home',
+		name: 'root',
 		component: Layout,
 		redirect: '/index',
+		meta: {},
 		children: [
 			{
 				path: '/index',
@@ -22,20 +23,28 @@ const routes = [
 
 const asyncRouterMap = [
 	{
-		path: '/user',
+		path: '/system',
 		component: Layout,
-		name: 'user',
+		name: 'system',
 		meta: {
-			title: '用户管理',
+			title: 'system',
 		},
 		children: [
 			{
-				path: '/user/list',
-				name: 'userlist',
+				path: '/system/user',
+				name: 'user',
 				meta: {
-					title: '用户列表',
+					title: 'user',
 				},
-				component: () => import('views/user/index.vue'),
+				component: () => import('views/system/user/index.vue'),
+			},
+			{
+				path: '/system/role',
+				name: 'role',
+				meta: {
+					title: 'role',
+				},
+				component: () => import('views/system/role/index.vue'),
 			},
 		],
 	},

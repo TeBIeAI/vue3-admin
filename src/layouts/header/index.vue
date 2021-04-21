@@ -1,3 +1,9 @@
 <template>
-	<el-header>Header</el-header>
+	<el-header>
+		<BreadCrumb />
+	</el-header>
 </template>
+
+<script setup>
+import BreadCrumb from 'cps/BreadCrumb/index.vue'
+</script>
