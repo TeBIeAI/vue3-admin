@@ -1,4 +1,6 @@
-<template> user </template>
+<template>
+	<el-card>user</el-card>
+</template>
 
 <script>
 export default {}

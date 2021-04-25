@@ -1,5 +1,5 @@
 <template>
-	<div>index</div>
+	<el-card>index</el-card>
 </template>
 
 <script>

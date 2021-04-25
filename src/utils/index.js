@@ -10,3 +10,16 @@ export const increaseIndexes = val => {
 		})
 		.filter(v => v.meta)
 }
+
+export const setStorage = (name, data) => {
+	localStorage.setItem(name, JSON.stringify(data))
+}
+
+export const getStorage = name => {
+	const data = localStorage.getItem(name)
+	return JSON.parse(data)
+}
+
+export const removeStorage = name => {
+	localStorage.removeItem(name)
+}

@@ -1,5 +1,7 @@
 {
 	"home": "Home",
 	"LoginOut": "Login Out",
-	"usermanagement": "User Manage"
+	"system": "System",
+	"user manage": "User Manage",
+	"role manage": "Role Manage"
 }

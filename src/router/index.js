@@ -3,6 +3,11 @@ import Layout from '@/layouts/index.vue'
 
 const routes = [
 	{
+		path: '/login',
+		name: 'login',
+		component: () => import('views/login/index.vue'),
+	},
+	{
 		path: '/',
 		name: 'root',
 		component: Layout,
@@ -34,7 +39,7 @@ const asyncRouterMap = [
 				path: '/system/user',
 				name: 'user',
 				meta: {
-					title: 'user',
+					title: 'user manage',
 				},
 				component: () => import('views/system/user/index.vue'),
 			},
@@ -42,7 +47,7 @@ const asyncRouterMap = [
 				path: '/system/role',
 				name: 'role',
 				meta: {
-					title: 'role',
+					title: 'role manage',
 				},
 				component: () => import('views/system/role/index.vue'),
 			},

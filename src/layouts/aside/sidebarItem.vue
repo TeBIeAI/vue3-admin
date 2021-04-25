@@ -1,35 +1,34 @@
 <template>
-	<div v-if="!route.hidden">
-		<template
-			v-if="
-				hasOneOrNoChild(route.children, route) &&
-				(!onlyOneChild.children || onlyOneChild.noShowingChildren)
-			"
-		>
-			<app-link v-if="onlyOneChild.meta" :to="route.path">
-				<el-menu-item :index="route.path">
-					<template #title>{{ onlyOneChild.meta.title }}</template>
-				</el-menu-item>
-			</app-link>
+	<template
+		v-if="
+			hasOneOrNoChild(route.children, route) &&
+			(!onlyOneChild.children || onlyOneChild.noShowingChildren)
+		"
+	>
+		<app-link v-if="onlyOneChild.meta" :to="route.path">
+			<el-menu-item :index="route.path">
+				<i class="el-icon-location"></i>
+				<template #title>{{ $t(onlyOneChild.meta.title) }}</template>
+			</el-menu-item>
+		</app-link>
+	</template>
+	<el-submenu v-else :index="route.path">
+		<template #title>
+			<i class="el-icon-location"></i>
+			<span>{{ $t(route.meta.title) }}</span>
 		</template>
-		<el-submenu v-else :index="route.path">
-			<template #title>
-				<span>{{ route.meta.title }}</span>
-			</template>
-			<sidebar-item
-				v-for="child in route.children"
-				:key="child.path"
-				:route="child"
-				:path="child.path"
-			/>
-		</el-submenu>
-	</div>
+		<sidebar-item
+			v-for="child in route.children"
+			:key="child.path"
+			:route="child"
+			:path="child.path"
+		/>
+	</el-submenu>
 </template>
 
 <script setup>
 import { defineProps, ref } from 'vue'
 import appLink from './link.vue'
-
 const props = defineProps({
 	path: String,
 	route: Object,

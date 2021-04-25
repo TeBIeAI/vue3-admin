@@ -1,5 +1,7 @@
 {
 	"home": "首页",
 	"LoginOut": "退出系统",
-	"usermanagement": "用户管理"
+	"system": "系统管理",
+	"user manage": "用户管理",
+	"role manage": "角色管理"
 }

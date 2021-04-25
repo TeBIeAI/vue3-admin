@@ -1,19 +1,26 @@
 <template>
 	<el-container style="height: 100%">
+		<!-- 侧边栏 -->
 		<Aside />
-		<el-container>
+		<el-container class="right-wrapper">
+			<!-- 右侧 header -->
 			<Header />
-			<el-main>
-				<router-view></router-view>
-			</el-main>
+			<router-tag></router-tag>
+			<!-- 主体app -->
+			<AppMan />
 			<el-footer>Footer</el-footer>
 		</el-container>
+		<!-- 配置主题色 -->
+		<Setting />
 	</el-container>
 </template>
 
 <script setup>
 import Aside from './aside/index.vue'
 import Header from './header/index.vue'
+import Setting from './setting/index.vue'
+import AppMan from './appMan.vue'
+import RouterTag from './tag/index.vue'
 </script>
 
 <style scoped lang="scss">
@@ -24,20 +31,17 @@ import Header from './header/index.vue'
 	line-height: 60px;
 }
 
-.el-aside {
-	background-color: #d3dce6;
-	color: #333;
-	line-height: 200px;
-}
-
 .el-main {
-	background-color: #e9eef3;
 	color: #333;
 	line-height: 160px;
 }
 
 body > .el-container {
 	margin-bottom: 40px;
+}
+
+.right-wrapper {
+	background: #e9eef3 !important;
 }
 
 .el-container:nth-child(5) .el-aside,

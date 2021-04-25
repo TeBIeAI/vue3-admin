@@ -1,8 +1,13 @@
 <template>
 	<el-breadcrumb separator="/">
 		<transition-group name="breadcrumb" appear>
-			<el-breadcrumb-item v-for="item in breadList" :key="item.path">
-				{{ item.meta.title }}
+			<el-breadcrumb-item v-for="(item, index) in breadList" :key="item.path">
+				<span v-if="index == breadList.length - 1" style="color: #999">
+					{{ $t(item.meta.title) }}
+				</span>
+				<a v-else @click="router.push(item.path)">
+					{{ $t(item.meta.title) }}
+				</a>
 			</el-breadcrumb-item>
 		</transition-group>
 	</el-breadcrumb>
@@ -20,7 +25,6 @@ export default defineComponent({
 
 		const getBreadCrumb = () => {
 			let matched = route.matched.filter(r => r.meta && r.meta.title)
-			console.log(matched)
 			if (matched[0].name !== 'index') {
 				matched = [
 					{
@@ -45,6 +49,7 @@ export default defineComponent({
 
 		return {
 			breadList,
+			router,
 		}
 	},
 })
