@@ -9,7 +9,7 @@
 				<BreadCrumb />
 			</el-col>
 			<el-col :offset="10" :span="6">
-				<div @click="handleToggleLang"> 111 </div>
+				<div @click="handleToggleLang"> {{ userinfo.username }} </div>
 			</el-col>
 		</el-row>
 	</el-header>
@@ -36,10 +36,10 @@ export default defineComponent({
 		const handleTollageAside = () => {
 			store.commit('SET_SIDEBAR')
 		}
-
 		return {
 			handleToggleLang,
 			collapse: computed(() => store.getters.sidebar.collapse),
+			userinfo: computed(() => store.getters.userInfo),
 			handleTollageAside,
 		}
 	},

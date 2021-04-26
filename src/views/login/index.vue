@@ -55,15 +55,17 @@
 import { defineComponent, onMounted, reactive, ref } from 'vue'
 import VerifiCode from 'cps/VerifiCode/index.vue'
 import { ElMessage } from 'element-plus'
+import { useStore } from 'vuex'
 
 export default defineComponent({
 	components: {
 		'v-sidentify': VerifiCode,
 	},
 	setup() {
+		const store = useStore()
 		const form = reactive({
 			username: 'admin',
-			password: '123456',
+			password: 123456,
 			sidentify: '',
 			vaildCode: '',
 		})
@@ -76,10 +78,16 @@ export default defineComponent({
 		const loginForm = ref(null)
 
 		const submitForm = () => {
-			form.sidentify !== form.vaildCode && ElMessage.error('请正确输入验证码')
-			loginForm.value.validate(vaild => {
+			// form.sidentify.toLocaleLowerCase() !==
+			// 	form.vaildCode.toLocaleLowerCase() &&
+			// 	ElMessage.error('请正确输入验证码')
+			loginForm.value.validate(async vaild => {
 				if (vaild) {
-					console.log(1)
+					const params = {
+						username: form.username,
+						password: form.password,
+					}
+					store.dispatch('login', params)
 				} else {
 					console.log(2)
 				}
