@@ -5,6 +5,7 @@ console.log(BASE_URL)
 
 axios.defaults.headers.post['Content-Type'] =
 	'application/x-www-form-urlencoded;charset=UTF-8'
+
 const instance = axios.create({
 	baseURL: BASE_URL + BASE_API,
 	timeout: 1000,
@@ -12,13 +13,13 @@ const instance = axios.create({
 
 // 添加请求拦截器
 instance.interceptors.request.use(
-	function (config) {
+	config => {
 		// 在发送请求之前做些什么
 		const token = getStorage('hc-token')
 		token && !Array.isArray(token) && (config.headers.authorization = token)
 		return config
 	},
-	function (error) {
+	error => {
 		// 对请求错误做些什么
 		return Promise.reject(error)
 	}
@@ -26,7 +27,7 @@ instance.interceptors.request.use(
 
 // 添加响应拦截器
 instance.interceptors.response.use(
-	function (response) {
+	response => {
 		// 对响应数据做点什么
 		const { data, code } = response.data
 		if (code !== 200) {
@@ -35,7 +36,7 @@ instance.interceptors.response.use(
 			return data
 		}
 	},
-	function (error) {
+	error => {
 		// 对响应错误做点什么
 		return Promise.reject(error)
 	}

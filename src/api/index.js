@@ -1,6 +1,6 @@
 import request from 'utils/axios'
 
-export function login(params) {
+export const login = params => {
 	return request({
 		url: 'user/login',
 		method: 'post',
